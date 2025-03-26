@@ -1,6 +1,37 @@
+from cryptography.fernet import Fernet
 import random
 import string
 
+# Generar o cargar una clave de cifrado
+def cargar_clave(archivo_clave="clave.key"):
+    try:
+        with open(archivo_clave, "rb") as archivo:
+            return archivo.read()
+    except FileNotFoundError:
+        clave = Fernet.generate_key()
+        with open(archivo_clave, "wb") as archivo:
+            archivo.write(clave)
+        return clave
+
+# Cifrar las contraseñas
+def cifrar_contraseña(contraseña, clave):
+    fernet = Fernet(clave)
+    return fernet.encrypt(contraseña.encode()).decode()
+
+# Descifrar las contraseñas
+def descifrar_contraseña(contraseña_cifrada, clave):
+    fernet = Fernet(clave)
+    return fernet.decrypt(contraseña_cifrada.encode()).decode()
+
+# Guardar contraseñas cifradas
+def guardar_contraseña_cifrada(contraseñas, clave, archivo="contraseñas_cifradas.txt"):
+    with open(archivo, "a") as f:
+        for contraseña in contraseñas:
+            contraseña_cifrada = cifrar_contraseña(contraseña, clave)
+            f.write(contraseña_cifrada + "\n")
+    print(f"Contraseñas cifradas guardadas en {archivo}")
+
+# Generador de contraseñas (sin cambios)
 def generar_contraseña(longitud=16, incluir_mayusculas=True, incluir_minusculas=True, incluir_numeros=True, incluir_especiales=True, evitar_ambiguos=False):
     caracteres = ""
     if incluir_mayusculas:
@@ -17,21 +48,15 @@ def generar_contraseña(longitud=16, incluir_mayusculas=True, incluir_minusculas
     if not caracteres:
         raise ValueError("Debe seleccionar al menos un tipo de carácter.")
     
-    # Evitar patrones predecibles
     while True:
         contraseña = ''.join(random.choice(caracteres) for _ in range(longitud))
         if not any(contraseña[i:i+3] in "abcdefghijklmnopqrstuvwxyz0123456789" for i in range(len(contraseña) - 2)):
             break
     return contraseña
 
-def guardar_contraseña(contraseñas, archivo="contraseñas.txt"):
-    with open(archivo, "a") as f:
-        for contraseña in contraseñas:
-            f.write(contraseña + "\n")
-    print(f"Contraseñas guardadas en {archivo}")
-
 if __name__ == "__main__":
     try:
+        clave = cargar_clave()
         cantidad = int(input("¿Cuántas contraseñas deseas generar?: "))
         if cantidad < 1:
             raise ValueError("La cantidad debe ser al menos 1.")
@@ -54,8 +79,8 @@ if __name__ == "__main__":
         for i, contraseña in enumerate(contraseñas, 1):
             print(f"{i}: {contraseña}")
         
-        guardar = input("\n¿Quieres guardar estas contraseñas? (s/n): ").lower() == 's'
+        guardar = input("\n¿Quieres guardar estas contraseñas cifradas? (s/n): ").lower() == 's'
         if guardar:
-            guardar_contraseña(contraseñas)
+            guardar_contraseña_cifrada(contraseñas, clave)
     except ValueError as e:
         print(f"Error: {e}")
