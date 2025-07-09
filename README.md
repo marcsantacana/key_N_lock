@@ -2,7 +2,7 @@
 
 Este es un generador de contraseñas seguras desarrollado en **Python**. Permite generar contraseñas aleatorias según las preferencias del usuario.
 
-## 🚀 Características
+## Características
 
 -   Longitud configurable de la contraseña.
     
@@ -23,7 +23,7 @@ Este es un generador de contraseñas seguras desarrollado en **Python**. Permite
 -   **Guardar contraseñas cifradas:** Las contraseñas se guardan cifradas en un archivo `contraseñas_cifradas.txt`.
     
 
-## 🛠️ Instalación
+## Instalación
 
 ### Requisitos
 
@@ -38,16 +38,16 @@ pip install cryptography
 python key_N_lock.py
 ```
 
-## 📸 Capturas de pantalla
+## Capturas de pantalla
 
 ![image](https://github.com/user-attachments/assets/033807a5-4c70-43ea-a04e-578e52693359)
 
 
-## 📜 Licencia
+## Licencia
 
 Este proyecto está bajo la licencia **MIT**. Puedes usarlo, modificarlo y compartirlo libremente.
 
 
-## 📩 Contacto
+## Contacto
 
 Si tienes dudas o sugerencias contactarme por github o por linkedin.
