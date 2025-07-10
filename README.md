@@ -50,4 +50,4 @@ Este proyecto está bajo la licencia **MIT**. Puedes usarlo, modificarlo y compa
 
 ## Contacto
 
-Si tienes dudas o sugerencias contactarme por github o por linkedin.
+Si tienes dudas o sugerencias contactame por github o por linkedin.
