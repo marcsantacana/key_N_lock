@@ -40,7 +40,11 @@ python key_N_lock.py
 
 ## Capturas de pantalla
 
-![image](https://github.com/user-attachments/assets/033807a5-4c70-43ea-a04e-578e52693359)
+- v1.0.0
+<img width="510" height="252" alt="image" src="https://github.com/user-attachments/assets/b3f452bc-1f15-4e31-a167-5a928cfb8605" />
+
+- v2.0.0
+<img width="520" height="644" alt="image" src="https://github.com/user-attachments/assets/ebe36149-d94a-4f9a-83de-d4e18c6f86ae" />
 
 
 ## Licencia
